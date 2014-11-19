@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+ 
 	var x = $('body').attr('dtx-ox'); //Get the value of session 
   	arrayx = []; //Create an array for json
 	$.ajax({
