@@ -53,7 +53,7 @@ function encryptx($data){
     $aqnx = strtr( $aqnx, "+/", "-_");
     $encrypted = stristr($aqnx, "=", true);
     
-    return $encrypted;
+    return $encrypted; 
 
 }
 
