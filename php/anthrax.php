@@ -1,5 +1,6 @@
 <?php
 ## Clean the input from script, html, style, and almost all potenially harmful tags.
+//Any CSRF ATTACK
 function clean_input($input) {
     $search = array(
         '@<script[^>]*?>.*?</script>@si',   /* strip out javascript */
@@ -7,7 +8,6 @@ function clean_input($input) {
         '@<style[^>]*?>.*?</style>@siU',    /* strip style tags properly */
         '@<![\s\S]*?--[ \t\n\r]*>@'         /* strip multi-line comments */
     );
-
     $output = preg_replace($search, '', $input);
     return $output;
 }
@@ -28,6 +28,7 @@ function crypto_rand_secure($min, $max) {
     return $min + $rnd;
 }
 
+//Create Token
 function get_token($length) {
     $token = '';
     $codeAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -39,13 +40,14 @@ function get_token($length) {
     return $token;
 }
 
+//Encrypt
 function encryptx($data){
     $aqnx = $data;
     $keystone = pack('H*', "bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
     $key_size =  strlen($keystone);
     $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
     $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-    $aqnx = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $keystone, $aqnx, MCRYPT_MODE_CBC, $iv)
+    $aqnx = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $keystone, $aqnx, MCRYPT_MODE_CBC, $iv);
     $aqnx = $iv . $aqnx;
     $aqnx = base64_encode($aqnx);
     $aqnx = strtr( $aqnx, "+/", "-_");
@@ -55,30 +57,17 @@ function encryptx($data){
 
 }
 
-//Question number for Answering decrypt
+//Decrypt
 function decryptx($data){
-   $a = strtr($data, "-_", "+/" );
-   $keystone = pack('H*', "bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
-   $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-   $ciphertext_dec = base64_decode($a);
-   $iv_dec = mb_substr($ciphertext_dec, 0, $iv_size);
-
-    $ciphertext_dec = mb_substr($ciphertext_dec, $iv_size);
-
-    $a = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $keystone, $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec);
-
-    $a = rtrim($a);
-
-
+   	$a = strtr($data, "-_", "+/" );
+   	$keystone = pack('H*', "bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
+   	$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+   	$ciphertext_dec = base64_decode($a);
+   	$iv_dec = mb_substr($ciphertext_dec, 0, $iv_size);
+	$ciphertext_dec = mb_substr($ciphertext_dec, $iv_size);
+	$a = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $keystone, $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec);
+	$a = rtrim($a);
 
     return $a;
-
 }
-
-//Check if date valid
-function validateDate($date)
-{
-    return (strtotime($date))?true:false;
-}
-
 ?>
