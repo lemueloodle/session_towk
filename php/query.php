@@ -35,7 +35,7 @@ if($salted_token != "" && $passed_input != ""){
 		echo '"key" : "'.$passed_input.'"';
 		echo "}";
 
-		//INPUT YOUR QUERY HERE
+		//NOW INPUT YOUR QUERY HERE
 	}
 	else{
 		echo "{";
