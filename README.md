@@ -12,7 +12,7 @@ Tweaked security for requesting API and passing input for query
 
 *   Prevent SQL Injection (if using mysql, not PDO)
 
-*	Decrease the chances of your website being hacked
+*	Decrease the chances of phishing
 
 -------
 
