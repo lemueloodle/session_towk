@@ -9,6 +9,7 @@ function clean_input($input) {
         '@<![\s\S]*?--[ \t\n\r]*>@'         /* strip multi-line comments */
     );
     $output = preg_replace($search, '', $input);
+    $output = mysql_real_escape_string($output);
     return $output;
 }
 

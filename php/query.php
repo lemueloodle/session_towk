@@ -3,17 +3,15 @@ session_start();
 include('anthrax.php');
 
 if(isset($_POST['key'])){
-	$salted_token = clean_input($_POST['key']); //Clean input from CSRF Attack
-	$salted_token = mysql_real_escape_string($salted_token); //A little prevention from injection
-	$salted_token = addslashes($salted_token);
+	//Clean input from CSRF Attack and Injection
+	$salted_token = clean_input($_POST['key']); 
 }
 else
 	$salted_token = "";
 
 if(isset($_POST['e_data'])){
-	$passed_input = clean_input($_POST['e_data']); //Clean input from CSRF Attack
-	$passed_input = mysql_real_escape_string($passed_input); //A little prevention from injection
-	$passed_input = addslashes($passed_input);
+	//Clean input from CSRF Attack and Injection
+	$passed_input = clean_input($_POST['e_data']); 
 }
 else
 	$passed_input = "";
