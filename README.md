@@ -32,7 +32,7 @@ Concatinate Session Token and Secret key, and create a salted token
 
 
 Now use the salted key to communicate with your Querying PHP file using (ajax post request);
-From the Querying PHP File, compare the SESSION Token and Secret Key if valid.
+From the Querying PHP File, compare the passed SESSION Token and Secret Key if valid.
 
 	//The number should be equal to the SESSION Token number of string from main page
 	$trimmed_secret = substr($salted_token, 50);
@@ -43,7 +43,12 @@ From the Querying PHP File, compare the SESSION Token and Secret Key if valid.
 	//Trimmed Session Token
 	$session_token = stristr($salted_token, $trimmed_secret, true);
 
+	//Compare the SESSION Token and secret key string to the passed Salted Token
+	if($_SESSION['token'] == $session_token && $secret_key == "secretkey"){
+		//YOUR MYSQL QUERY HERE
+	}	
 
+	
 ### Prevent CSRF and SQL Injection Attack
 
 	$passed_input = clean_input($_POST['data']);
