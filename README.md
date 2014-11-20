@@ -26,7 +26,7 @@ At the same page, create a secret key and encrypt it.
 
 	$secret = encryptx("secretkey");
 
-Concatinate Session Token and Secret key, and create a salted token
+Concatenate Session Token and Secret key, and create a salted token
 
 	$salted = $_SESSION['token'].$secret;
 
@@ -48,7 +48,7 @@ From the Querying PHP File, compare the passed SESSION Token and Secret Key if v
 		//YOUR MYSQL QUERY HERE
 	}	
 
-	
+
 ### Prevent CSRF and SQL Injection Attack
 
 	$passed_input = clean_input($_POST['data']);
