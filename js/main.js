@@ -1,5 +1,4 @@
 $(document).ready(function(){
- 
   $(document).on("click", ".x_send", function(){
   	var x = $(this).attr('pox-ms'); //Get the value of session token
     var y = $('#x_text').val(); //Get the value of the text box
