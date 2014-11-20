@@ -10,7 +10,7 @@ Tweaked security for requesting API and passing input for query
 
 *   Prevent CSRF Attack
 
-*   Prevent SQL Injection
+*   Prevent SQL Injection (if using mysql, not PDO)
 
 *	Decrease the chances of your website being hacked
 
