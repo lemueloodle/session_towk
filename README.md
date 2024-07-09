@@ -54,4 +54,3 @@ From the Querying PHP File, compare the passed SESSION Token and Secret Key if v
 	$passed_input = clean_input($_POST['data']);
 
     
-###Developed by Lemuel John Paule (https://lemuelpaule.xyz)
